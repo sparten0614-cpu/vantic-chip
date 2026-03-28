@@ -1,0 +1,15 @@
+[options]
+mode bmc
+depth 120
+
+[engines]
+smtbmc z3
+
+[script]
+read -sv buck_pwm.v
+read -sv buck_pwm_formal.sv
+prep -top buck_pwm_formal
+
+[files]
+buck_pwm_formal.sv
+/Users/mini1/zylos/workspace/vantic-chip/vt3200/rtl/buck_pwm.v

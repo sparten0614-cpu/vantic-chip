@@ -1,0 +1,63 @@
+# =============================================================================
+# VT3100 USB PD Protocol Controller — iCE40 HX8K-CT256 Pin Constraints
+# =============================================================================
+# Target: Lattice iCE40 HX8K-CT256 (256-ball csBGA, 7680 LUTs)
+# For FPGA prototyping/validation only — production uses 55nm ASIC
+# =============================================================================
+
+# --- System ---
+set_io clk              J3        # 12 MHz oscillator input
+set_io rst_n            R16       # Active-low reset (directly from button)
+
+# --- CC Pins (analog interface via comparators) ---
+set_io cc1_comp[0]      A1        # CC1 Ra comparator
+set_io cc1_comp[1]      A2        # CC1 Rd comparator
+set_io cc1_comp[2]      A5        # CC1 below_vOpen comparator
+set_io cc2_comp[0]      B1        # CC2 Ra comparator
+set_io cc2_comp[1]      B2        # CC2 Rd comparator
+set_io cc2_comp[2]      B3        # CC2 below_vOpen comparator
+set_io rp_cc1_level[0]  B4        # Rp current source level CC1 bit 0
+set_io rp_cc1_level[1]  B5        # Rp current source level CC1 bit 1
+set_io rp_cc2_level[0]  B6        # Rp current source level CC2 bit 0
+set_io rp_cc2_level[1]  B7        # Rp current source level CC2 bit 1
+
+# --- BMC PHY (CC line, muxed by orientation) ---
+set_io cc_rx_in         C1        # BMC receive from active CC
+set_io cc_tx_out        C2        # BMC transmit to active CC
+set_io cc_sel           C3        # CC orientation select (0=CC1, 1=CC2)
+
+# --- I2C Interface ---
+set_io scl_in           D1        # I2C clock input
+set_io sda_in           D2        # I2C data input
+set_io sda_oe           D3        # I2C data output enable (active-high)
+
+# --- Power Stage Control ---
+set_io vbus_en          E2        # VBUS power enable
+set_io vbus_voltage[0]  F1        # Target voltage bit 0 (100mV units)
+set_io vbus_voltage[1]  F2        # Target voltage bit 1
+set_io vbus_voltage[2]  F3        # Target voltage bit 2
+set_io vbus_voltage[3]  F4        # Target voltage bit 3
+set_io vbus_voltage[4]  F5        # Target voltage bit 4
+set_io vbus_voltage[5]  G1        # Target voltage bit 5
+set_io vbus_voltage[6]  G2        # Target voltage bit 6
+set_io vbus_voltage[7]  G3        # Target voltage bit 7
+set_io vbus_current[0]  G4        # Max current bit 0 (10mA units)
+set_io vbus_current[1]  G5        # Max current bit 1
+set_io vbus_current[2]  H1        # Max current bit 2
+set_io vbus_current[3]  H2        # Max current bit 3
+set_io vbus_current[4]  H3        # Max current bit 4
+set_io vbus_current[5]  H4        # Max current bit 5
+set_io vbus_current[6]  H5        # Max current bit 6
+set_io vbus_current[7]  H6        # Max current bit 7
+set_io vbus_current[8]  J1        # Max current bit 8
+set_io vbus_current[9]  J2        # Max current bit 9
+set_io vbus_stable      J4        # VBUS reached target (input)
+
+# --- Status ---
+set_io pd_contract      K3        # PD contract negotiated
+set_io vbus_present     K4        # VBUS presence indicator
+set_io protocol_id[0]   L1        # Active protocol ID bit 0
+set_io protocol_id[1]   L5        # Active protocol ID bit 1
+set_io protocol_id[2]   L3        # Active protocol ID bit 2
+set_io protocol_id[3]   L4        # Active protocol ID bit 3
+set_io int_out          M1        # Interrupt output (active-high)

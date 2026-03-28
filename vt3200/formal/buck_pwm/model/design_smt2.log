@@ -1,0 +1,135 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.63 (git sha1 70a11c6bf0e8dd669f56c7da3587f78b405138e2, clang++ 17.0.0 -fPIC -O3)
+
+-- Executing script file `design_smt2.ys' --
+
+1. Executing RTLIL frontend.
+Input filename: design_prep.il
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `buck_pwm_formal'. Setting top module to buck_pwm_formal.
+
+2.1. Analyzing design hierarchy..
+Top module:  \buck_pwm_formal
+Used module:     \buck_pwm
+
+2.2. Analyzing design hierarchy..
+Top module:  \buck_pwm_formal
+Used module:     \buck_pwm
+Removed 0 unused modules.
+Module buck_pwm_formal directly or indirectly contains formal properties -> setting "keep" attribute.
+
+3. Executing FORMALFF pass.
+
+4. Executing DFFUNMAP pass (unmap clock enable and synchronous reset from FFs).
+
+5. Printing statistics.
+
+=== buck_pwm ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       98 wires
+      247 wire bits
+       35 public wires
+      118 public wire bits
+       16 ports
+       50 port bits
+       86 cells
+        3   $add
+       10   $and
+        8   $anyinit
+        1   $assume
+        4   $eq
+        1   $ge
+        3   $logic_and
+        6   $logic_not
+        1   $lt
+       37   $mux
+        5   $not
+        5   $pmux
+        1   $reduce_or
+        1   $sub
+
+=== buck_pwm_formal ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       66 wires
+      110 wire bits
+       20 public wires
+       64 public wire bits
+       11 ports
+       29 port bits
+       68 cells
+        2   $anyinit
+       11   $assert
+        7   $assume
+        4   $eq
+       11   $ff
+        1   $initstate
+        3   $le
+       11   $logic_and
+        6   $logic_not
+        8   $mux
+        3   $not
+        1   $pmux
+        1 submodules
+        1   buck_pwm
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+      154 buck_pwm_formal
+       86 buck_pwm
+
+        +----------Count including submodules.
+        | 
+      164 wires
+      357 wire bits
+       55 public wires
+      182 public wire bits
+       27 ports
+       79 port bits
+        - memories
+        - memory bits
+        - processes
+      154 cells
+        3   $add
+       10   $and
+       10   $anyinit
+       11   $assert
+        8   $assume
+        8   $eq
+       11   $ff
+        1   $ge
+        1   $initstate
+        3   $le
+       14   $logic_and
+       12   $logic_not
+        1   $lt
+       45   $mux
+        8   $not
+        6   $pmux
+        1   $reduce_or
+        1   $sub
+        1 submodules
+        1   buck_pwm
+
+6. Executing SMT2 backend.
+
+6.1. Executing BMUXMAP pass.
+
+6.2. Executing DEMUXMAP pass.
+Creating SMT-LIBv2 representation of module buck_pwm.
+Creating SMT-LIBv2 representation of module buck_pwm_formal.
+
+End of script. Logfile hash: d73171ed47, CPU: user 0.01s system 0.00s, MEM: 13.58 MB peak
+Yosys 0.63 (git sha1 70a11c6bf0e8dd669f56c7da3587f78b405138e2, clang++ 17.0.0 -fPIC -O3)
+Time spent: 60% 2x write_smt2 (0 sec), 23% 2x read_rtlil (0 sec), ...

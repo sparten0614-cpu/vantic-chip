@@ -1,0 +1,9 @@
+# running in buck_pwm/src/
+read -sv buck_pwm.v
+read -sv buck_pwm_formal.sv
+prep -top buck_pwm_formal
+
+hierarchy -smtcheck
+rename -witness
+write_jny -no-connections ../model/design.json
+write_rtlil ../model/design.il

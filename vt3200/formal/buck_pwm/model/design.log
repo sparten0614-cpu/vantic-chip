@@ -1,0 +1,511 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.63 (git sha1 70a11c6bf0e8dd669f56c7da3587f78b405138e2, clang++ 17.0.0 -fPIC -O3)
+
+-- Executing script file `../model/design.ys' --
+
+1. Executing Verilog-2005 frontend: buck_pwm.v
+Parsing SystemVerilog input from `buck_pwm.v' to AST representation.
+Storing AST representation for module `$abstract\buck_pwm'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: buck_pwm_formal.sv
+Parsing SystemVerilog input from `buck_pwm_formal.sv' to AST representation.
+Storing AST representation for module `$abstract\buck_pwm_formal'.
+Successfully finished Verilog frontend.
+
+3. Executing PREP pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.2. Executing AST frontend in derive mode using pre-parsed AST for module `\buck_pwm_formal'.
+Generating RTLIL representation for module `\buck_pwm_formal'.
+
+3.2.1. Analyzing design hierarchy..
+Top module:  \buck_pwm_formal
+
+3.2.2. Executing AST frontend in derive mode using pre-parsed AST for module `\buck_pwm'.
+Generating RTLIL representation for module `\buck_pwm'.
+
+3.2.3. Analyzing design hierarchy..
+Top module:  \buck_pwm_formal
+Used module:     \buck_pwm
+
+3.2.4. Analyzing design hierarchy..
+Top module:  \buck_pwm_formal
+Used module:     \buck_pwm
+Removing unused module `$abstract\buck_pwm_formal'.
+Removing unused module `$abstract\buck_pwm'.
+Removed 2 unused modules.
+Module buck_pwm_formal directly or indirectly contains formal properties -> setting "keep" attribute.
+
+3.3. Executing PROC pass (convert processes to netlists).
+
+3.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 6 switch rules as full_case in process $proc$buck_pwm.v:112$79 in module buck_pwm.
+Marked 1 switch rules as full_case in process $proc$buck_pwm.v:83$74 in module buck_pwm.
+Marked 2 switch rules as full_case in process $proc$buck_pwm.v:63$69 in module buck_pwm.
+Marked 1 switch rules as full_case in process $proc$buck_pwm.v:49$68 in module buck_pwm.
+Marked 1 switch rules as full_case in process $proc$buck_pwm_formal.sv:123$60 in module buck_pwm_formal.
+Removed a total of 0 dead cases.
+
+3.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 3 redundant assignments.
+Promoted 7 assignments to connections.
+
+3.3.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\buck_pwm_formal.$proc$buck_pwm_formal.sv:41$64'.
+  Set init value: \f_past_valid = 1'0
+
+3.3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_n in `\buck_pwm.$proc$buck_pwm.v:112$79'.
+Found async reset \rst_n in `\buck_pwm.$proc$buck_pwm.v:83$74'.
+Found async reset \rst_n in `\buck_pwm.$proc$buck_pwm.v:63$69'.
+
+3.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~20 debug messages>
+
+3.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\buck_pwm.$proc$buck_pwm.v:112$79'.
+     1/5: $0\pwm_raw_d[0:0]
+     2/5: $0\lg_pre[0:0]
+     3/5: $0\hg_pre[0:0]
+     4/5: $0\dt_counter[2:0]
+     5/5: $0\dt_state[1:0]
+Creating decoders for process `\buck_pwm.$proc$buck_pwm.v:83$74'.
+     1/2: $0\sd_carry[0:0]
+     2/2: $0\sd_accum[6:0]
+Creating decoders for process `\buck_pwm.$proc$buck_pwm.v:63$69'.
+     1/1: $0\pwm_counter[8:0]
+Creating decoders for process `\buck_pwm.$proc$buck_pwm.v:49$68'.
+     1/1: $1\period_max[8:0]
+Creating decoders for process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:45$65'.
+Creating decoders for process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:41$64'.
+Creating decoders for process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:132$61'.
+     1/1: $assert$buck_pwm_formal.sv:134$62_EN
+Creating decoders for process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:123$60'.
+     1/1: $1\period_max_check[8:0]
+Creating decoders for process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:112$50'.
+     1/1: $assert$buck_pwm_formal.sv:114$58_EN
+Creating decoders for process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:102$44'.
+     1/2: $assert$buck_pwm_formal.sv:105$48_EN
+     2/2: $assert$buck_pwm_formal.sv:104$46_EN
+Creating decoders for process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:92$37'.
+     1/2: $assert$buck_pwm_formal.sv:95$42_EN
+     2/2: $assert$buck_pwm_formal.sv:94$40_EN
+Creating decoders for process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:82$30'.
+     1/2: $assert$buck_pwm_formal.sv:85$35_EN
+     2/2: $assert$buck_pwm_formal.sv:84$33_EN
+Creating decoders for process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:72$24'.
+     1/2: $assert$buck_pwm_formal.sv:75$28_EN
+     2/2: $assert$buck_pwm_formal.sv:74$26_EN
+Creating decoders for process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:63$20'.
+     1/1: $assert$buck_pwm_formal.sv:65$21_EN
+Creating decoders for process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:50$8'.
+     1/4: $assume$buck_pwm_formal.sv:55$18_EN
+     2/4: $assume$buck_pwm_formal.sv:54$16_EN
+     3/4: $assume$buck_pwm_formal.sv:53$14_EN
+     4/4: $assume$buck_pwm_formal.sv:52$12_EN
+Creating decoders for process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:46$4'.
+     1/1: $assume$buck_pwm_formal.sv:47$6_EN
+Creating decoders for process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:42$3'.
+
+3.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\buck_pwm.\period_max' from process `\buck_pwm.$proc$buck_pwm.v:49$68'.
+No latch inferred for signal `\buck_pwm_formal.\period_max_check' from process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:123$60'.
+
+3.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\buck_pwm.\dt_state' using process `\buck_pwm.$proc$buck_pwm.v:112$79'.
+  created $adff cell `$procdff$231' with positive edge clock and positive level reset.
+Creating register for signal `\buck_pwm.\dt_counter' using process `\buck_pwm.$proc$buck_pwm.v:112$79'.
+  created $adff cell `$procdff$236' with positive edge clock and positive level reset.
+Creating register for signal `\buck_pwm.\hg_pre' using process `\buck_pwm.$proc$buck_pwm.v:112$79'.
+  created $adff cell `$procdff$241' with positive edge clock and positive level reset.
+Creating register for signal `\buck_pwm.\lg_pre' using process `\buck_pwm.$proc$buck_pwm.v:112$79'.
+  created $adff cell `$procdff$246' with positive edge clock and positive level reset.
+Creating register for signal `\buck_pwm.\pwm_raw_d' using process `\buck_pwm.$proc$buck_pwm.v:112$79'.
+  created $adff cell `$procdff$251' with positive edge clock and positive level reset.
+Creating register for signal `\buck_pwm.\sd_accum' using process `\buck_pwm.$proc$buck_pwm.v:83$74'.
+  created $adff cell `$procdff$256' with positive edge clock and positive level reset.
+Creating register for signal `\buck_pwm.\sd_carry' using process `\buck_pwm.$proc$buck_pwm.v:83$74'.
+  created $adff cell `$procdff$261' with positive edge clock and positive level reset.
+Creating register for signal `\buck_pwm.\pwm_counter' using process `\buck_pwm.$proc$buck_pwm.v:63$69'.
+  created $adff cell `$procdff$266' with positive edge clock and positive level reset.
+Creating register for signal `\buck_pwm_formal.$past$buck_pwm_formal.sv:52$1$0' using process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:50$8'.
+  created $dff cell `$procdff$267' with positive edge clock.
+Creating register for signal `\buck_pwm_formal.$past$buck_pwm_formal.sv:53$2$0' using process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:50$8'.
+  created $dff cell `$procdff$268' with positive edge clock.
+Creating register for signal `\buck_pwm_formal.\f_past_valid' using process `\buck_pwm_formal.$proc$buck_pwm_formal.sv:42$3'.
+  created $dff cell `$procdff$269' with positive edge clock.
+
+3.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 7 empty switches in `\buck_pwm.$proc$buck_pwm.v:112$79'.
+Removing empty process `buck_pwm.$proc$buck_pwm.v:112$79'.
+Found and cleaned up 1 empty switch in `\buck_pwm.$proc$buck_pwm.v:83$74'.
+Removing empty process `buck_pwm.$proc$buck_pwm.v:83$74'.
+Found and cleaned up 1 empty switch in `\buck_pwm.$proc$buck_pwm.v:63$69'.
+Removing empty process `buck_pwm.$proc$buck_pwm.v:63$69'.
+Found and cleaned up 1 empty switch in `\buck_pwm.$proc$buck_pwm.v:49$68'.
+Removing empty process `buck_pwm.$proc$buck_pwm.v:49$68'.
+Removing empty process `buck_pwm_formal.$proc$buck_pwm_formal.sv:45$65'.
+Removing empty process `buck_pwm_formal.$proc$buck_pwm_formal.sv:41$64'.
+Found and cleaned up 1 empty switch in `\buck_pwm_formal.$proc$buck_pwm_formal.sv:132$61'.
+Removing empty process `buck_pwm_formal.$proc$buck_pwm_formal.sv:132$61'.
+Found and cleaned up 1 empty switch in `\buck_pwm_formal.$proc$buck_pwm_formal.sv:123$60'.
+Removing empty process `buck_pwm_formal.$proc$buck_pwm_formal.sv:123$60'.
+Found and cleaned up 1 empty switch in `\buck_pwm_formal.$proc$buck_pwm_formal.sv:112$50'.
+Removing empty process `buck_pwm_formal.$proc$buck_pwm_formal.sv:112$50'.
+Found and cleaned up 1 empty switch in `\buck_pwm_formal.$proc$buck_pwm_formal.sv:102$44'.
+Removing empty process `buck_pwm_formal.$proc$buck_pwm_formal.sv:102$44'.
+Found and cleaned up 1 empty switch in `\buck_pwm_formal.$proc$buck_pwm_formal.sv:92$37'.
+Removing empty process `buck_pwm_formal.$proc$buck_pwm_formal.sv:92$37'.
+Found and cleaned up 1 empty switch in `\buck_pwm_formal.$proc$buck_pwm_formal.sv:82$30'.
+Removing empty process `buck_pwm_formal.$proc$buck_pwm_formal.sv:82$30'.
+Found and cleaned up 1 empty switch in `\buck_pwm_formal.$proc$buck_pwm_formal.sv:72$24'.
+Removing empty process `buck_pwm_formal.$proc$buck_pwm_formal.sv:72$24'.
+Found and cleaned up 1 empty switch in `\buck_pwm_formal.$proc$buck_pwm_formal.sv:63$20'.
+Removing empty process `buck_pwm_formal.$proc$buck_pwm_formal.sv:63$20'.
+Found and cleaned up 1 empty switch in `\buck_pwm_formal.$proc$buck_pwm_formal.sv:50$8'.
+Removing empty process `buck_pwm_formal.$proc$buck_pwm_formal.sv:50$8'.
+Found and cleaned up 1 empty switch in `\buck_pwm_formal.$proc$buck_pwm_formal.sv:46$4'.
+Removing empty process `buck_pwm_formal.$proc$buck_pwm_formal.sv:46$4'.
+Removing empty process `buck_pwm_formal.$proc$buck_pwm_formal.sv:42$3'.
+Cleaned up 20 empty switches.
+
+3.3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module buck_pwm.
+<suppressed ~23 debug messages>
+Optimizing module buck_pwm_formal.
+<suppressed ~10 debug messages>
+
+3.4. Executing FUTURE pass.
+
+3.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module buck_pwm.
+Optimizing module buck_pwm_formal.
+
+3.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \buck_pwm..
+Finding unused cells or wires in module \buck_pwm_formal..
+Removed 12 unused cells and 99 unused wires.
+<suppressed ~14 debug messages>
+
+3.7. Executing CHECK pass (checking for obvious problems).
+Checking module buck_pwm...
+Checking module buck_pwm_formal...
+Found and reported 0 problems.
+
+3.8. Executing OPT pass (performing simple optimizations).
+
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module buck_pwm.
+Optimizing module buck_pwm_formal.
+
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\buck_pwm'.
+Computing hashes of 80 cells of `\buck_pwm'.
+Finding duplicate cells in `\buck_pwm'.
+Computing hashes of 69 cells of `\buck_pwm'.
+Finding duplicate cells in `\buck_pwm'.
+<suppressed ~33 debug messages>
+Finding identical cells in module `\buck_pwm_formal'.
+Computing hashes of 72 cells of `\buck_pwm_formal'.
+Finding duplicate cells in `\buck_pwm_formal'.
+Computing hashes of 64 cells of `\buck_pwm_formal'.
+Finding duplicate cells in `\buck_pwm_formal'.
+<suppressed ~24 debug messages>
+Removed a total of 19 cells.
+
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \buck_pwm..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \buck_pwm_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~70 debug messages>
+
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \buck_pwm.
+  Optimizing cells in module \buck_pwm_formal.
+Performed a total of 0 changes.
+
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\buck_pwm'.
+Computing hashes of 69 cells of `\buck_pwm'.
+Finding duplicate cells in `\buck_pwm'.
+Computing hashes of 67 cells of `\buck_pwm'.
+Finding duplicate cells in `\buck_pwm'.
+<suppressed ~6 debug messages>
+Finding identical cells in module `\buck_pwm_formal'.
+Computing hashes of 64 cells of `\buck_pwm_formal'.
+Finding duplicate cells in `\buck_pwm_formal'.
+Computing hashes of 56 cells of `\buck_pwm_formal'.
+Finding duplicate cells in `\buck_pwm_formal'.
+<suppressed ~24 debug messages>
+Removed a total of 10 cells.
+
+3.8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \buck_pwm..
+Finding unused cells or wires in module \buck_pwm_formal..
+Removed 0 unused cells and 29 unused wires.
+<suppressed ~2 debug messages>
+
+3.8.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module buck_pwm.
+Optimizing module buck_pwm_formal.
+
+3.8.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.8.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \buck_pwm..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \buck_pwm_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~54 debug messages>
+
+3.8.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \buck_pwm.
+    New ctrl vector for $pmux cell $procmux$163: { $procmux$116_CMP $auto$opt_reduce.cc:137:opt_pmux$271 }
+    New ctrl vector for $pmux cell $procmux$142: { $procmux$116_CMP $auto$opt_reduce.cc:137:opt_pmux$273 }
+  Optimizing cells in module \buck_pwm.
+  Optimizing cells in module \buck_pwm_formal.
+Performed a total of 2 changes.
+
+3.8.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\buck_pwm'.
+Computing hashes of 69 cells of `\buck_pwm'.
+Finding duplicate cells in `\buck_pwm'.
+Computing hashes of 68 cells of `\buck_pwm'.
+Finding duplicate cells in `\buck_pwm'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `\buck_pwm_formal'.
+Computing hashes of 56 cells of `\buck_pwm_formal'.
+Finding duplicate cells in `\buck_pwm_formal'.
+Removed a total of 1 cells.
+
+3.8.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \buck_pwm..
+Finding unused cells or wires in module \buck_pwm_formal..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+3.8.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module buck_pwm.
+Optimizing module buck_pwm_formal.
+
+3.8.14. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.8.15. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \buck_pwm..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \buck_pwm_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~52 debug messages>
+
+3.8.16. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \buck_pwm.
+  Optimizing cells in module \buck_pwm_formal.
+Performed a total of 0 changes.
+
+3.8.17. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\buck_pwm'.
+Computing hashes of 68 cells of `\buck_pwm'.
+Finding duplicate cells in `\buck_pwm'.
+Finding identical cells in module `\buck_pwm_formal'.
+Computing hashes of 56 cells of `\buck_pwm_formal'.
+Finding duplicate cells in `\buck_pwm_formal'.
+Removed a total of 0 cells.
+
+3.8.18. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \buck_pwm..
+Finding unused cells or wires in module \buck_pwm_formal..
+
+3.8.19. Executing OPT_EXPR pass (perform const folding).
+Optimizing module buck_pwm.
+Optimizing module buck_pwm_formal.
+
+3.8.20. Finished fast OPT passes. (There is nothing left to do.)
+
+3.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 8 bits (of 9) from port B of cell buck_pwm.$add$buck_pwm.v:69$72 ($add).
+Removed top 1 bits (of 8) from port A of cell buck_pwm.$add$buck_pwm.v:88$76 ($add).
+Removed top 1 bits (of 8) from port B of cell buck_pwm.$add$buck_pwm.v:88$76 ($add).
+Removed top 8 bits (of 9) from port B of cell buck_pwm.$add$buck_pwm.v:93$77 ($add).
+Removed top 2 bits (of 3) from port B of cell buck_pwm.$sub$buck_pwm.v:163$90 ($sub).
+Removed top 1 bits (of 2) from port B of cell buck_pwm.$procmux$168_CMP0 ($eq).
+Removed top 1 bits (of 9) from mux cell buck_pwm.$procmux$188 ($pmux).
+Removed top 1 bits (of 2) from port B of cell buck_pwm.$procmux$190_CMP0 ($eq).
+Removed top 1 bits (of 9) from wire buck_pwm.period_max.
+Removed top 1 bits (of 9) from mux cell buck_pwm_formal.$procmux$194 ($pmux).
+Removed top 1 bits (of 2) from port B of cell buck_pwm_formal.$procmux$196_CMP0 ($eq).
+Removed top 1 bits (of 9) from wire buck_pwm_formal.period_max_check.
+
+3.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \buck_pwm..
+Finding unused cells or wires in module \buck_pwm_formal..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~2 debug messages>
+
+3.11. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.12. Executing OPT pass (performing simple optimizations).
+
+3.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module buck_pwm.
+Optimizing module buck_pwm_formal.
+
+3.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\buck_pwm'.
+Computing hashes of 68 cells of `\buck_pwm'.
+Finding duplicate cells in `\buck_pwm'.
+Finding identical cells in module `\buck_pwm_formal'.
+Computing hashes of 56 cells of `\buck_pwm_formal'.
+Finding duplicate cells in `\buck_pwm_formal'.
+Removed a total of 0 cells.
+
+3.12.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \buck_pwm..
+Finding unused cells or wires in module \buck_pwm_formal..
+
+3.12.4. Finished fast OPT passes.
+
+3.13. Executing SORT pass.
+
+3.14. Printing statistics.
+
+=== buck_pwm ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       81 wires
+      196 wire bits
+       27 public wires
+       93 public wire bits
+       16 ports
+       50 port bits
+       68 cells
+        3   $add
+        8   $adff
+       10   $and
+        4   $eq
+        1   $ge
+        3   $logic_and
+        6   $logic_not
+        1   $lt
+       21   $mux
+        4   $not
+        5   $pmux
+        1   $reduce_or
+        1   $sub
+
+=== buck_pwm_formal ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       54 wires
+       98 wire bits
+       18 public wires
+       59 public wire bits
+       11 ports
+       29 port bits
+       55 cells
+       17   $check
+        3   $dff
+        4   $eq
+        3   $le
+       11   $logic_and
+        6   $logic_not
+        8   $mux
+        2   $not
+        1   $pmux
+        1 submodules
+        1   buck_pwm
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+      123 buck_pwm_formal
+       68 buck_pwm
+
+        +----------Count including submodules.
+        | 
+      135 wires
+      294 wire bits
+       45 public wires
+      152 public wire bits
+       27 ports
+       79 port bits
+        - memories
+        - memory bits
+        - processes
+      123 cells
+        3   $add
+        8   $adff
+       10   $and
+       17   $check
+        3   $dff
+        8   $eq
+        1   $ge
+        3   $le
+       14   $logic_and
+       12   $logic_not
+        1   $lt
+       29   $mux
+        6   $not
+        6   $pmux
+        1   $reduce_or
+        1   $sub
+        1 submodules
+        1   buck_pwm
+
+3.15. Executing CHECK pass (checking for obvious problems).
+Checking module buck_pwm...
+Checking module buck_pwm_formal...
+Found and reported 0 problems.
+
+4. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `buck_pwm_formal'. Setting top module to buck_pwm_formal.
+
+4.1. Analyzing design hierarchy..
+Top module:  \buck_pwm_formal
+Used module:     \buck_pwm
+
+4.2. Analyzing design hierarchy..
+Top module:  \buck_pwm_formal
+Used module:     \buck_pwm
+Removed 0 unused modules.
+Module buck_pwm_formal directly or indirectly contains formal properties -> setting "keep" attribute.
+
+5. Executing jny backend.
+
+6. Executing RTLIL backend.
+Output filename: ../model/design.il
+
+End of script. Logfile hash: 649151afff, CPU: user 0.02s system 0.00s, MEM: 16.03 MB peak
+Yosys 0.63 (git sha1 70a11c6bf0e8dd669f56c7da3587f78b405138e2, clang++ 17.0.0 -fPIC -O3)
+Time spent: 21% 6x opt_clean (0 sec), 21% 7x opt_expr (0 sec), ...

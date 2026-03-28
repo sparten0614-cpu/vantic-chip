@@ -1,0 +1,66 @@
+# =============================================================================
+# VT3200 USB PD + Buck Converter — iCE40 HX8K-CT256 Pin Constraints
+# =============================================================================
+# Target: Lattice iCE40 HX8K-CT256 (256-ball csBGA, 7680 LUTs)
+# For FPGA prototyping/validation only — production uses 55nm ASIC
+# Dual clock domain: clk_sys (12MHz) + clk_pwm (96MHz from PLL)
+# =============================================================================
+
+# --- System ---
+set_io clk_sys          J3        # 12 MHz system clock
+set_io clk_pwm          G1        # 96 MHz PWM clock (PLL output)
+set_io rst_n            R16       # Active-low reset
+set_io pll_lock         P16       # PLL lock indicator
+
+# --- CC Pins (analog interface via comparators) ---
+set_io cc1_comp[0]      A1        # CC1 Ra comparator
+set_io cc1_comp[1]      A2        # CC1 Rd comparator
+set_io cc1_comp[2]      A5        # CC1 below_vOpen comparator
+set_io cc2_comp[0]      B1        # CC2 Ra comparator
+set_io cc2_comp[1]      B2        # CC2 Rd comparator
+set_io cc2_comp[2]      B3        # CC2 below_vOpen comparator
+set_io rp_cc1_level[0]  B4        # Rp current source level CC1 bit 0
+set_io rp_cc1_level[1]  B5        # Rp current source level CC1 bit 1
+set_io rp_cc2_level[0]  B6        # Rp current source level CC2 bit 0
+set_io rp_cc2_level[1]  B7        # Rp current source level CC2 bit 1
+
+# --- BMC PHY ---
+set_io cc_rx_in         C1        # BMC receive from active CC
+set_io cc_tx_out        C2        # BMC transmit to active CC
+set_io cc_sel           C3        # CC orientation select
+
+# --- I2C Interface ---
+set_io scl_in           D1        # I2C clock
+set_io sda_in           D2        # I2C data input
+set_io sda_oe           D3        # I2C data output enable
+
+# --- Buck Power Stage ---
+set_io hg_out           E2        # High-side gate drive (96MHz domain)
+set_io lg_out           E3        # Low-side gate drive (96MHz domain)
+set_io ocp_comp         E4        # OCP comparator input (analog)
+
+# --- ADC Hardware Interface ---
+set_io adc_ch_sel[0]    F1        # ADC channel select bit 0
+set_io adc_ch_sel[1]    F2        # ADC channel select bit 1
+set_io adc_start        F3        # ADC conversion start
+set_io adc_busy         F4        # ADC busy (input)
+set_io adc_data[0]      F5        # ADC data bit 0
+set_io adc_data[1]      H1        # ADC data bit 1
+set_io adc_data[2]      H2        # ADC data bit 2
+set_io adc_data[3]      H3        # ADC data bit 3
+set_io adc_data[4]      H4        # ADC data bit 4
+set_io adc_data[5]      H5        # ADC data bit 5
+set_io adc_data[6]      H6        # ADC data bit 6
+set_io adc_data[7]      J1        # ADC data bit 7
+set_io adc_data[8]      J2        # ADC data bit 8
+set_io adc_data[9]      J4        # ADC data bit 9
+set_io adc_valid        J5        # ADC data valid
+
+# --- Status ---
+set_io pgood            K3        # Power good output
+set_io pd_contract      K4        # PD contract active
+set_io protocol_id[0]   L1        # Protocol ID bit 0
+set_io protocol_id[1]   L5        # Protocol ID bit 1
+set_io protocol_id[2]   L3        # Protocol ID bit 2
+set_io protocol_id[3]   L4        # Protocol ID bit 3
+set_io int_out          M1        # Interrupt output
