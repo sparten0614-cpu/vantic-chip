@@ -1,8 +1,8 @@
 # VT3100 / VT3200 Verification Report
 
-**Document:** VANTIC-VER-001 Rev 1.0
-**Date:** 2026-03-29
-**Status:** Phase 2 — Verification Complete
+**Document:** VANTIC-VER-001 Rev 2.0
+**Date:** 2026-03-31
+**Status:** Phase 2 Complete — FPGA Bitstreams Verified
 
 ---
 
@@ -272,12 +272,35 @@ All VCD traces available for post-simulation analysis:
 
 ---
 
-## 9. Tool Versions
+## 9. FPGA Prototype Verification
+
+### 9.1 Synthesis & P&R Verification
+
+| Check | VT3100 | VT3200 |
+|-------|--------|--------|
+| Yosys synth_ice40 | PASS | PASS |
+| nextpnr-ice40 P&R | PASS | PASS |
+| icepack bitstream | PASS | PASS |
+| Timing (all clocks) | PASS | PASS |
+
+### 9.2 Timing Closure
+
+| Clock | Constraint | Achieved Fmax | Status |
+|-------|-----------|---------------|--------|
+| VT3100 clk | 12 MHz | 84.65 MHz | PASS (7.1x margin) |
+| VT3200 clk_sys | 12 MHz | 46.53 MHz | PASS (3.9x margin) |
+| VT3200 clk_pwm | 96 MHz | 104.46 MHz | PASS (1.1x margin) |
+
+---
+
+## 10. Tool Versions
 
 | Tool | Version | Purpose |
 |------|---------|---------|
 | Verilator | 5.046 | Simulation + lint |
 | Yosys | 0.63 | Synthesis |
+| nextpnr-ice40 | latest | FPGA place & route |
+| icepack | icestorm | Bitstream generation |
 | SymbiYosys | latest | Formal verification |
 | Z3 | latest | SMT solver |
 | C++ compiler | clang++ 17.0.0 | Testbench compilation |

@@ -1,8 +1,8 @@
 # VT3100 / VT3200 RTL Design Report
 
-**Document:** VANTIC-RTL-001 Rev 1.0
-**Date:** 2026-03-29
-**Status:** Phase 2 — FPGA Prototyping
+**Document:** VANTIC-RTL-001 Rev 2.0
+**Date:** 2026-03-31
+**Status:** Phase 2 Complete — FPGA Bitstreams Generated
 
 ---
 
@@ -177,9 +177,51 @@ vt3100/build/vt3100_ice40.json   (2.7 MB netlist)
 vt3200/build/vt3200_ice40.json   (4.3 MB netlist)
 ```
 
+### FPGA Bitstreams
+```
+vt3100/build/vt3100.bin          (132 KB, iCE40 HX8K-CT256)
+vt3100/build/vt3100.asc          (2.6 MB, ASCII placement)
+vt3200/build/vt3200.bin          (132 KB, iCE40 HX8K-CT256)
+vt3200/build/vt3200.asc          (2.6 MB, ASCII placement)
+```
+
 ---
 
-## 7. Known Limitations
+## 7. FPGA Place & Route Results
+
+### 7.1 Resource Utilization (post-P&R)
+
+| Resource | VT3100 | VT3200 | HX8K Available |
+|----------|--------|--------|----------------|
+| LUT4 + DFF LCs | 1,342 (17.5%) | 2,202 (28.7%) | 7,680 |
+| DFF-only LCs | 391 | 460 | 7,680 |
+| CARRY LCs | — | 331 | 7,680 |
+| Total LCs | 1,733 (22.6%) | 3,123 (40.7%) | 7,680 |
+
+### 7.2 Timing (Fmax)
+
+| Clock | Target | VT3100 Fmax | VT3200 Fmax | Margin |
+|-------|--------|-------------|-------------|--------|
+| clk (12MHz) | 12 MHz | 84.65 MHz | — | 7.1x |
+| clk_sys (12MHz) | 12 MHz | — | 46.53 MHz | 3.9x |
+| clk_pwm (96MHz) | 96 MHz | — | 104.46 MHz | 1.1x |
+
+- **VT3100:** Single clock domain, 7.1x timing margin
+- **VT3200 clk_sys:** 3.9x margin — comfortable
+- **VT3200 clk_pwm:** 1.1x margin at 96 MHz — compensator critical path
+
+### 7.3 FPGA Toolchain
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+| Yosys | 0.63 | Logic synthesis |
+| nextpnr-ice40 | latest | Place & route |
+| icepack | icestorm | Bitstream generation |
+| Target FPGA | iCE40 HX8K-CT256 | 7,680 LUTs, 256-ball csBGA |
+
+---
+
+## 8. Known Limitations
 
 1. **SPI slave** (`spi_slave.v`) included in VT3100 RTL but not instantiated in top module
 2. **VT3200 PLL** not included in RTL — assumes external PLL provides `clk_pwm`
